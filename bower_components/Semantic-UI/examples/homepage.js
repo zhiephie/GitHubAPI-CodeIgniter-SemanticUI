@@ -1,3 +1,15 @@
+/*
+ ____              ____  _ _____                                   _     
+/ ___| _   _ _ __ |  _ \(_)___ / _   _  __ _ _ __  ___ _   _  __ _| |__  
+\___ \| | | | '_ \| | | | | |_ \| | | |/ _` | '_ \/ __| | | |/ _` | '_ \ 
+ ___) | |_| | | | | |_| | |___) | |_| | (_| | | | \__ \ |_| | (_| | | | |
+|____/ \__,_|_| |_|____/|_|____/ \__, |\__,_|_| |_|___/\__, |\__,_|_| |_|
+                                 |___/                 |___/             
+
+|--------------------------------------------------------------------------
+|            IMPORTANT! JavaScript has been doing a lot of change
+|--------------------------------------------------------------------------
+                                                                         */
 $(document)
   .ready(function() {
 
@@ -37,7 +49,7 @@ $(document)
 
     $('.ui.dropdown')
       .dropdown({
-        on: 'hover'
+        on: 'click'
       })
     ;
 
@@ -47,8 +59,18 @@ $(document)
       })
     ;
 
+    $('.header.popup')
+      .popup({
+        position : 'top center'
+      })
+    ;
+
+    $('.ui.accordion')
+      .accordion()
+    ;
+
     $('.masthead .information')
-      .transition('scale in', 1000)
+      .transition('scale in', 3000)
     ;
 
     setInterval(changeSides, 3000);

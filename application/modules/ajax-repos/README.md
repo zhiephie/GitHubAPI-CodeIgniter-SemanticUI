@@ -1,7 +1,16 @@
-Homepage this Repository
+Ajax List Repository on GitHub
 ==================
 
-Live Demo on Heroku : https://sundi3yansyah.herokuapp.com
+## Configuration
+
+You must set value your username on github in file
+`../application/config/config_custom.php`
+
+You will see code like this
+
+```$config['github_username'] = 'your-username';```
+
+Replace the values with your username on github
 
 ## Files
 

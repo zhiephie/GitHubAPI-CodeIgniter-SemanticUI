@@ -1,17 +1,35 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+/**
+ * @package		GitHubAPI-CodeIgniter-SemanticUI
+ * @author		Cahyadi Triyansyah (http://sundi3yansyah.com)
+ * @version		0.1
+ * @license		MIT
+ */
 
 class Homepage extends CI_Controller {
 
 	function __construct()
 	{
 		parent::__construct();
+
+		$this->CI =& get_instance();
+		$this->CI->config->load('config_custom_test');
 	}
 
 	function index()
 	{
-		$user = 'YOUR-USERNAME';
-		$token = 'YOUR-TOKEN-APP';
+		$data = array(
+			'repos'	=> $this->_repos(),
+			'repo'	=> 'https://github.com/'.$this->CI->config->item('github_username').'/GitHubAPI-CodeIgniter-SemanticUI',
+			'title' => 'Showcase - '.$this->CI->config->item('github_username').' ('.$this->CI->config->item('author').')',
+			);
+		$this->load->view('homepage', $data);
+	}
+
+	function _repos()
+	{
+		$user = $this->CI->config->item('github_username');
+		$token = $this->CI->config->item('token');
 		$curl_url = 'https://api.github.com/users/' . $user . '/repos';
 		$curl_token_auth = 'Authorization: token ' . $token;
 		$ch = curl_init($curl_url);
@@ -19,10 +37,7 @@ class Homepage extends CI_Controller {
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('User-Agent: Awesome-Octocat-App', $curl_token_auth));
 		$get_json = curl_exec($ch); 
 		curl_close($ch);
-		$data = array(
-			'output' => json_decode($get_json)
-			);
-		$this->load->view('homepage', $data);
+		return json_decode($get_json);
 	}
 
 }
